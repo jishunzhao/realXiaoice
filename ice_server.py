@@ -114,7 +114,7 @@ class RunServer:
     application = web.Application(handlers, **settings)
 
     @staticmethod
-    def run_server(port=9876, host='127.0.0.1', **kwargs):
+    def run_server(port=9876, host='', **kwargs):
         tornado_server = httpserver.HTTPServer(RunServer.application, **kwargs, xheaders=True)
         tornado_server.bind(port, host)
 
@@ -134,7 +134,7 @@ class RunServer:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     options.define("p", default=6789, help="running port", type=int)
-    options.define("h", default='127.0.0.1', help="listen address", type=str)
+    options.define("h", default='', help="listen address", type=str)
     options.define("a", default='', help="Allowed IPs to access this server,split by comma", type=str)
     options.define("auth", default=False, help="Enable auth? default is set to false", type=bool)
     options.parse_command_line()
